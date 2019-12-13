@@ -6,3 +6,4 @@
 <p id="alert"><%= alert %></p>
 
 <%= current_user.present? ? image_tag(current_user.profile_image_url) : nil %>
+<%= link_to 'Logout', logout_path, method: :delete %>
