@@ -160,10 +160,11 @@ Rails.application.config.sorcery.configure do |config|
   config.google.key = ENV['GOOGLE_API_CLIENT_KEY']
   config.google.secret = ENV['GOOGLE_API_CLIENT_SECRET']
 
-  config.google.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=google"
+  config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
   config.google.user_info_mapping = {
+    # HINT: { user_models_column_name: 'google_api_side_key_name' }
     email: 'email',
-    picture: 'profile_image_url'
+    profile_image_url: 'picture'
   }
   # Ref: [OAuth 2.0 Scopes for Google APIs  |  Google Identity Platform](https://developers.google.com/identity/protocols/googlescopes)
   config.google.scope = %w[
@@ -524,6 +525,7 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `nil`
     #
     # user.authentications_class =
+    user.authentications_class = Authentication
 
     # User's identifier in the `authentications` class.
     # Default: `:user_id`
