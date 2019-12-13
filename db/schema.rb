@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_13_140432) do
+ActiveRecord::Schema.define(version: 2019_12_13_144234) do
 
   create_table "authentications", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2019_12_13_140432) do
     t.string "salt"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "profile_image_url", default: ""
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
