@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :schedule_candidates
+  resources :schedules
+
   root to: 'static#index'
 
   get 'static/index'

@@ -1,0 +1,18 @@
+= form_with(model: schedule_candidate, local: true) do |form|
+  - if schedule_candidate.errors.any?
+    #error_explanation
+      h2
+        = pluralize(schedule_candidate.errors.count, "error")
+        |  prohibited this schedule_candidate from being saved:
+      ul
+        - schedule_candidate.errors.full_messages.each do |message|
+          li
+            = message
+  .field
+    = form.label :start_datetime
+    = form.datetime_select :start_datetime
+  .field
+    = form.label :end_datetime
+    = form.datetime_select :end_datetime
+  .actions
+    = form.submit

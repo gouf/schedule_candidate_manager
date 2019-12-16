@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+.wrapper {
+  margin-bottom: 5vh;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+td.controll {
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
