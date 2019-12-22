@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_203840) do
+ActiveRecord::Schema.define(version: 2019_12_21_163915) do
 
   create_table "authentications", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_203840) do
     t.datetime "start_datetime"
     t.datetime "end_datetime"
     t.integer "schedule_id"
+    t.string "calendar_event_id"
     t.index ["schedule_id"], name: "index_schedule_candidates_on_schedule_id"
   end
 

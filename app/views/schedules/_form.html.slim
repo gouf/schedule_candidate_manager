@@ -8,5 +8,12 @@
         - schedule.errors.full_messages.each do |message|
           li
             = message
+  .field
+    = form.label :corporation_name
+    = form.text_field :corporation_name
+  = render 'schedule_candidate_form'
+  .field
+    = form.label :description
+    = form.text_area :description
   .actions
     = form.submit

@@ -66,3 +66,9 @@ td.schedule__schedule_date {
 td.schedule__controll {
   padding-left: 1vw;
 }
+
+button#schedule__schedule_candidate__add-new-form {
+  &:hover {
+    background: #DCDCDC;
+  }
+}

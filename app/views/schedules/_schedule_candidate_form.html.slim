@@ -1,0 +1,10 @@
+#schedule__dynamically_form
+  button#schedule__schedule_candidate__add-new-form[type="button"]
+    | Add New
+  .schedule__schedule_candidate
+    .field.schedule__copy_valueFrom
+      = label_tag t('activerecord.attributes.schedule_candidate.start_datetime')
+      = datetime_field_tag 'start_datetime[]'
+    .field.schedule__copy_valueTo
+      = label_tag t('activerecord.attributes.schedule_candidate.end_datetime')
+      = datetime_field_tag 'end_datetime[]'

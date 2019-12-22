@@ -1,6 +1,8 @@
 module SchedulesHelper
   # Ref: https://stackoverflow.com/questions/1300838/how-to-convert-an-address-into-a-google-maps-link-not-map
   def google_maps_location_search_link(query)
+    return if query.blank?
+
     link_to(
       query,
       "https://www.google.com/maps/search/?api=1&query=#{URI.encode(query)}",

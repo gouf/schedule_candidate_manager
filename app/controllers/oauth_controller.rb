@@ -10,6 +10,7 @@ class OauthController < ApplicationController
     provider = auth_params[:provider]
 
     if @user = login_from(provider)
+      session[:google_access_token] = access_token.token
       redirect_to root_path, notice: "Logged in from #{provider.titleize}! (login_from)"
       return
     end
@@ -17,6 +18,8 @@ class OauthController < ApplicationController
     @user = create_from(provider)
     reset_session # protect from session fixation attack
     auto_login(@user)
+
+    session[:google_access_token] = access_token.token
 
     redirect_to root_path, notice: "Logged in from #{provider.titleize}!"
   end
