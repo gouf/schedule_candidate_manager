@@ -12,7 +12,7 @@ class GoogleCalendar
   def insert_event(**params)
     event =
       ::Google::Apis::CalendarV3::Event.new(
-        summary: params.fetch(:summary, '面談? (未定)'),
+        summary: params.fetch(:summary, ''),
         location: params.fetch(:location, ''),
         description: params.fetch(:description, ''),
         start: {

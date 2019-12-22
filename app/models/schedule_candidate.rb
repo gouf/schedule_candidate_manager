@@ -14,7 +14,7 @@ class ScheduleCandidate < ApplicationRecord
     calendar_id =
       GoogleCalendar.new(token)
                     .insert_event(
-                      summary: schedule.title,
+                      summary: '面談? (未定)',
                       location: schedule.location,
                       description: [schedule.corporation_name, schedule.description].join("\n"),
                       start_datetime: start_datetime,
