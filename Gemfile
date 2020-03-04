@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate'
   gem 'brakeman'
   gem 'pry-nav'
   gem 'pry-rails'
