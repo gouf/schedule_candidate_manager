@@ -44,10 +44,12 @@ end
 group :development do
   gem 'annotate'
   gem 'brakeman'
+  gem 'guard-rspec'
   gem 'pry-nav'
   gem 'pry-rails'
   gem 'pry-rescue'
-  gem 'guard-rspec'
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
