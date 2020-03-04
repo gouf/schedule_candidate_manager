@@ -8,6 +8,7 @@
         - schedule.errors.full_messages.each do |message|
           li
             = message
+  = form.text_field :user_id, value: current_user.id, hidden: true
   .field
     = form.label :corporation_name
     = form.text_field :corporation_name
