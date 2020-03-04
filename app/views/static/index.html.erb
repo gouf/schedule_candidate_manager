@@ -7,3 +7,4 @@
 
 <%= current_user.present? ? image_tag(current_user.profile_image_url) : nil %>
 <%= link_to 'Logout', logout_path, method: :delete %>
+<%= link_to 'Schedules', schedules_path %>

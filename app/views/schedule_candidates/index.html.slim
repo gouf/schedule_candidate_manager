@@ -1,0 +1,32 @@
+.wrapper
+  p#notice
+    = notice
+.wrapper
+  h1
+    | Schedule Candidates
+.wrapper
+  table.schedule_candidates__table
+    thead
+      tr
+        th
+          | 企業名
+        th
+          | 開始日時 〜 終了日時
+        th[colspan="3"]
+          | 操作
+    tbody.schedule_candidates__tbody
+      - @schedule_candidates.each do |schedule_candidate|
+        tr
+          td.schedule_candidates__corporation_name
+            = schedule_candidate.schedule.corporation_name
+          td.schedule_candidates__schedule_date
+            = format_datetime_for_view(schedule_candidate)
+          td.controll[col="all"]
+            = link_to 'Show', schedule_candidate
+          td.controll
+            = link_to 'Edit', edit_schedule_candidate_path(schedule_candidate)
+          td.controll
+            = link_to 'Destroy', schedule_candidate, method: :delete, data: { confirm: 'Are you sure?' }
+br
+.wrapper
+  = link_to 'New Schedule Candidate', new_schedule_candidate_path

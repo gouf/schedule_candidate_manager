@@ -1,0 +1,13 @@
+p#notice
+  = notice
+p
+  strong
+    | 開始日時:
+  = l @schedule_candidate.start_datetime, format: :long
+p
+  strong
+    | 終了日時:
+  = l @schedule_candidate.end_datetime, format: :long
+= link_to 'Edit', edit_schedule_candidate_path(@schedule_candidate)
+|  |
+= link_to 'Back', schedule_candidates_path

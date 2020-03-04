@@ -1,0 +1,27 @@
+// Place all the styles related to the schedule_candidates controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+td.schedule_candidates__corporation_name {
+  padding-right: 1vw;
+  font-size: 2.1vh;
+  line-height: 2em;
+}
+
+th.schedule_candidates__schedule_date {
+  padding-right: 0.5vw;
+  padding-left: 0.5vw;
+}
+
+tbody.schedule_candidates__tbody tr td {
+  padding-top: 0.5vh;
+  padding-bottom: 1vh;
+}
+
+table.schedule_candidates__table {
+  border-collapse: collapse;
+}
+
+table.schedule_candidates__table tbody tr:hover {
+  background: #EDEDED;
+}

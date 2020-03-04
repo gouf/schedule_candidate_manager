@@ -1,0 +1,2 @@
+module ScheduleCandidatesHelper
+end

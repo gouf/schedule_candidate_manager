@@ -1,0 +1,22 @@
+p#notice
+  = notice
+
+table
+  tr
+    th 企業名
+    td = @schedule.corporation_name
+  tr
+    th 場所
+    td = google_maps_location_search_link(@schedule.location)
+  tr
+    th 詳細
+    td = tag.pre(@schedule.description)
+  tr
+    th 候補日・確定日
+    td
+      ul
+        - @schedule.schedule_candidates.each do |candidate|
+          li = format_datetime_for_view(candidate)
+= link_to 'Edit', edit_schedule_path(@schedule)
+|  |
+= link_to 'Back', schedules_path

@@ -1,0 +1,26 @@
+.wrapper
+  p#notice
+    = notice
+
+.wrapper
+  h1
+    | 面談日一覧
+
+.wrapper
+  table.schedule__table
+    thead
+      tr
+        th.schedule__corporation_name 企業名
+        th.schedule__location 場所
+        th.schedule__schedule_date 開始日時 〜 終了日時 (候補日・確定日)
+        th.schedule__controll 操作
+    tbody
+      - @schedules.each do |schedule|
+        tr
+          td.schedule__corporation_name = schedule.corporation_name
+          td.schedule__location = google_maps_location_search_link(schedule.location)
+          td.schedule__shedule_date = list_schedule_candidates(schedule.schedule_candidates)
+          td.schedule__controll = link_to('詳細', schedule_path(schedule), title: '詳細を表示')
+br
+.wrapper
+  = link_to 'New Schedule', new_schedule_path

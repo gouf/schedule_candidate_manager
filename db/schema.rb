@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_13_144234) do
+ActiveRecord::Schema.define(version: 2020_03_01_083542) do
 
   create_table "authentications", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -19,6 +19,33 @@ ActiveRecord::Schema.define(version: 2019_12_13_144234) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
+  end
+
+  create_table "schedule_candidates", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+    t.integer "schedule_id"
+    t.string "calendar_event_id"
+    t.index ["schedule_id"], name: "index_schedule_candidates_on_schedule_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "corporation_name"
+    t.string "location"
+    t.integer "user_id"
+  end
+
+  create_table "tokens", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "token"
+    t.datetime "expires_at"
+    t.string "refresh_token"
   end
 
   create_table "users", force: :cascade do |t|

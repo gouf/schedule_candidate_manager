@@ -1,5 +1,4 @@
 class OauthController < ApplicationController
-  # skip_before_action :require_login, raise: false
   skip_before_action :require_login
 
   def oauth
@@ -10,6 +9,13 @@ class OauthController < ApplicationController
     provider = auth_params[:provider]
 
     if @user = login_from(provider)
+      Token.create!(
+        user_id: current_user.id,
+        token: access_token.token,
+        refresh_token: access_token.refresh_token,
+        expires_at: DateTime.strptime(access_token.expires_at.to_s, '%s')
+      )
+
       redirect_to root_path, notice: "Logged in from #{provider.titleize}! (login_from)"
       return
     end
@@ -17,6 +23,13 @@ class OauthController < ApplicationController
     @user = create_from(provider)
     reset_session # protect from session fixation attack
     auto_login(@user)
+
+    Token.create!(
+      user_id: current_user.id,
+      token: access_token.token,
+      refresh_token: access_token.refresh_token,
+      expire_at: DateTime.strptime(access_token.expires_at.to_s, '%s')
+    )
 
     redirect_to root_path, notice: "Logged in from #{provider.titleize}!"
   end

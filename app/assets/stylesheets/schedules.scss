@@ -1,0 +1,74 @@
+// Place all the styles related to the schedule_candidates controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+table.schedule__table {
+  border-collapse: collapse;
+}
+
+table.schedule__table tbody tr:hover {
+  background: #EDEDED;
+}
+
+table.schedule__table tr td {
+  border: none;
+  border-bottom: thin solid #0A0A0A;
+}
+
+th.schedule__corporation_name {
+}
+
+th.schedule__location {
+  padding-right: 1.5vw;
+  padding-left: 1.5vw;
+}
+
+th.schedule__schedule_date {
+  padding-right: 0.5vw;
+  padding-left: 0.5vw;
+}
+
+th.schedule__controll {
+  padding-left: 1vw;
+}
+
+td.schedule__corporation_name {
+  color: #333333;
+  font-size: 2.2vh;
+  font-weight: 600;
+  line-height: 2em;
+}
+
+td.schedule__schedule_date ul {
+  margin-top: 0.5vh;
+  margin-bottom: 1vh;
+}
+
+td.schedule__location {
+  text-align: center;
+  font-size: 1.8vh;
+  width: 20vw;
+}
+
+td.schedule__controll {
+  text-align: center;
+}
+
+td.schedule__location a {
+  word-break: break-word;
+  display: inline-block;
+}
+
+td.schedule__schedule_date {
+  padding-right: 10px;
+}
+
+td.schedule__controll {
+  padding-left: 1vw;
+}
+
+button#schedule__schedule_candidate__add-new-form {
+  &:hover {
+    background: #DCDCDC;
+  }
+}
