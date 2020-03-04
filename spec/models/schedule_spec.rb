@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: schedules
+#
+#  id               :integer          not null, primary key
+#  title            :string
+#  description      :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  corporation_name :string
+#  location         :string
+#  user_id          :integer
+#
 describe Schedule do
   describe 'Tests attributes' do
     subject { Schedule.new }

@@ -28,24 +28,16 @@ class SchedulesController < ApplicationController
   # POST /schedules
   # POST /schedules.json
   def create
-    start_datetime_array = params[:start_datetime]
-    end_datetime_array = params[:end_datetime]
-
-    datetime_pairs = start_datetime_array.zip(end_datetime_array)
-
-    @schedule = Schedule.new(schedule_params)
-
-    @schedule.datetime_pairs = datetime_pairs
-    # FIXME: トークン期限切れ時に イベントが作成できない (= 要再ログイン)
-    @schedule.google_access_token = session[:google_access_token]
+    google_calendar =
+      GoogleCalendar.new(
+        current_user.tokens.last.token
+      )
 
     respond_to do |format|
-      if @schedule.save
-        format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
-        format.json { render :show, status: :created, location: @schedule }
+      if google_calendar.save_schedule_candidates(schedule_create_args)
+        format.html { redirect_to schedules_path, notice: 'Schedule was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @schedule.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -75,14 +67,28 @@ class SchedulesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_schedule
-      @schedule = Schedule.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def schedule_params
-      params.require(:schedule)
-            .permit(:corporation_name, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_schedule
+    @schedule = Schedule.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def schedule_params
+    params.require(:schedule)
+          .permit(:corporation_name, :description, :user_id)
+  end
+
+  # * Google Calendar API にイベントを作成するための情報
+  # * Schedule, ScheduleCandidate モデル に/で レコードを保存するための情報
+  def schedule_create_args
+    {
+      user_id: params['schedule']['user_id'],
+      title: params['schedule'].fetch('title', '面談?'),
+      corporation_name: params['schedule']['corporation_name'],
+      description: params['schedule']['description'],
+      start_datetime: params['start_datetime'],
+      end_datetime: params['end_datetime']
+    }
+  end
 end

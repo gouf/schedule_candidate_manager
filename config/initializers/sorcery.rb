@@ -156,6 +156,8 @@ Rails.application.config.sorcery.configure do |config|
   # config.google.user_info_mapping = {:email => "email", :username => "name"}
   # config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
 
+  # Ref: https://github.com/Sorcery/sorcery/issues/201#issuecomment-548207323
+  config.google.auth_url = '/o/oauth2/auth?access_type=offline&prompt=consent' # Request offline access
   # Ref: https://console.cloud.google.com/apis/credentials
   config.google.key = ENV['GOOGLE_API_CLIENT_KEY']
   config.google.secret = ENV['GOOGLE_API_CLIENT_SECRET']

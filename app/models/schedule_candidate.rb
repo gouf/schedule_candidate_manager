@@ -1,7 +1,17 @@
+# == Schema Information
+#
+# Table name: schedule_candidates
+#
+#  id                :integer          not null, primary key
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  start_datetime    :datetime
+#  end_datetime      :datetime
+#  schedule_id       :integer
+#  calendar_event_id :string
+#
 class ScheduleCandidate < ApplicationRecord
-  attr_accessor :token
-
-  after_create :insert_to_calendar
+  before_destroy :delete_calendar_event
 
   belongs_to :schedule
 
@@ -10,18 +20,7 @@ class ScheduleCandidate < ApplicationRecord
 
   private
 
-  def insert_to_calendar
-    calendar_id =
-      GoogleCalendar.new(token)
-                    .insert_event(
-                      summary: '面談? (未定)',
-                      location: schedule.location,
-                      description: [schedule.corporation_name, schedule.description].join("\n"),
-                      start_datetime: start_datetime,
-                      end_datetime: end_datetime
-                    ).id
-
-    self.calendar_event_id = calendar_id
-    save!
+  def delete_calendar_event
+    GoogleCalendar.new(schedule.user_token).delete_event(calendar_event_id)
   end
 end

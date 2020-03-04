@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: schedule_candidates
+#
+#  id                :integer          not null, primary key
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  start_datetime    :datetime
+#  end_datetime      :datetime
+#  schedule_id       :integer
+#  calendar_event_id :string
+#
 describe ScheduleCandidate do
   describe 'Tests attributes' do
     subject { ScheduleCandidate.new }
