@@ -6,8 +6,8 @@ class SchedulesController < ApplicationController
   # GET /schedules.json
   def index
     @schedules =
-      Schedule.all
-              .includes(:schedule_candidates)
+      Schedule.includes(:schedule_candidates)
+              .where(user_id: current_user.id)
               .limit(30)
   end
 
